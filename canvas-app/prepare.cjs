@@ -1,0 +1,11 @@
+const f=require('fs'),z=require('zlib');
+const root=require('path').resolve(__dirname,'../../work/canvas-source');
+const packed=f.readFileSync(root+'/css.txt','utf8').trim().split('\n').slice(1).join('');
+f.writeFileSync(__dirname+'/source.css',z.inflateSync(Buffer.from(packed,'base64')));
+const c=f.readFileSync(root+'/lib/creative-canvas.ts','utf8');
+f.writeFileSync(__dirname+'/src/creative-canvas.ts','export type SerializedCanvas = any;\n'+c.slice(c.indexOf('export type ActiveCanvasPromptReference'),c.indexOf('export async function loadCanvas')));
+const p=__dirname+'/src/CanvasWorkspace.tsx';
+let t=f.readFileSync(p,'utf8').replace("import Link from 'next/link'","import { Link } from './Link'").replaceAll('@/lib/creative-canvas','./creative-canvas').replaceAll('@/lib/video-tail-frame','./video-tail-frame');
+t=t.replace('const response = await fetch(url, init)','const response = await localRequest(url, init)').replace("'use client'","'use client'\nimport { localRequest } from './store'").replace(/window.history.replaceState[^\n]+/g,'');
+t=t.replace('Imaideo <em>Canvas</em>','映序 <em>画布</em>').replace('color="#3f3f46"','color="#d5dbe5"');
+f.writeFileSync(p,t);

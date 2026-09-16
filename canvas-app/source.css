@@ -1,0 +1,2542 @@
+.canvasAppShell {
+  width: 100vw;
+  height: 100vh;
+  min-width: 320px;
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  grid-template-rows: 58px minmax(0, 1fr);
+  overflow: hidden;
+  background: var(--canvas);
+}
+
+.canvasTopbar {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(180px, 420px) minmax(220px, 1fr);
+  align-items: center;
+  gap: 20px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+  z-index: 20;
+}
+
+.canvasBrand,
+.canvasUserBadge,
+.canvasSidebarHeader,
+.canvasCreateForm,
+.canvasToolbar,
+.canvasFlowNode header,
+.canvasTaskState,
+.canvasVideoResult > div,
+.canvasGenerateButton,
+.canvasEmptyState button,
+.canvasBusyIndicator,
+.canvasNotice,
+.canvasError {
+  display: flex;
+  align-items: center;
+}
+
+.canvasBrand {
+  gap: 9px;
+}
+
+.canvasBrand > span {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.canvasBackButton,
+.canvasNodeIconButton {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.canvasBackButton:hover,
+.canvasNodeIconButton:hover:not(:disabled) {
+  border-color: var(--line-strong);
+  background: var(--panel-muted);
+}
+
+.canvasDocumentName {
+  width: 100%;
+  height: 36px;
+  border-color: transparent;
+  background: transparent;
+  text-align: center;
+  font-weight: 720;
+}
+
+.canvasDocumentName:hover,
+.canvasDocumentName:focus {
+  border-color: var(--line);
+  background: var(--panel-muted);
+}
+
+.canvasUserBadge {
+  min-width: 0;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.25;
+}
+
+.canvasUserBadge strong,
+.canvasUserBadge small {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.canvasUserBadge strong {
+  font-size: 12px;
+}
+
+.canvasUserBadge small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.canvasSidebar {
+  grid-column: 1;
+  grid-row: 2;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--line);
+  background: var(--panel);
+  z-index: 12;
+}
+
+.canvasSidebarHeader {
+  min-height: 52px;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 11px 8px 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.canvasSidebarHeader strong {
+  font-size: 13px;
+}
+
+.canvasCreateForm {
+  gap: 5px;
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel-muted);
+}
+
+.canvasCreateForm input {
+  min-width: 0;
+  height: 34px;
+  flex: 1 1 auto;
+}
+
+.canvasCreateForm button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.canvasDocumentList {
+  min-height: 0;
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.canvasDocumentList > button {
+  width: 100%;
+  min-height: 56px;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+  padding: 7px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+}
+
+.canvasDocumentList > button:hover,
+.canvasDocumentList > button.active {
+  border-color: var(--line);
+  background: var(--panel-muted);
+}
+
+.canvasDocumentList > button.active {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.canvasDocumentThumb {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--panel-strong);
+  color: var(--muted);
+}
+
+.canvasDocumentThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.canvasDocumentList > button > span:last-child {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.canvasDocumentList strong,
+.canvasDocumentList small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.canvasDocumentList strong {
+  font-size: 12px;
+}
+
+.canvasDocumentList small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.canvasStage {
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.canvasStage .react-flow {
+  background: oklch(0.955 0.009 205);
+}
+
+.canvasStage .react-flow__edge-path {
+  stroke: var(--accent-strong);
+}
+
+.canvasStage .react-flow__edge.selected .react-flow__edge-path {
+  stroke: var(--coral);
+}
+
+.canvasStage .react-flow__edge-textbg {
+  fill: var(--panel);
+  stroke: var(--line);
+}
+
+.canvasStage .react-flow__controls,
+.canvasStage .react-flow__minimap {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  box-shadow: none;
+}
+
+.canvasStage .react-flow__controls button {
+  border-bottom-color: var(--line);
+}
+
+.canvasStage .react-flow__minimap {
+  background: var(--panel);
+}
+
+.canvasToolbar {
+  gap: 6px;
+  max-width: calc(100vw - 280px);
+  overflow-x: auto;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: color-mix(in oklch, var(--panel) 94%, transparent);
+  box-shadow: 0 6px 18px oklch(0.2 0.03 220 / 0.09);
+}
+
+.canvasToolbar button,
+.canvasEmptyState button {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  flex: 0 0 auto;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 680;
+}
+
+.canvasToolbar button:hover:not(:disabled),
+.canvasEmptyState button:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.canvasFlowNode {
+  width: 320px;
+  overflow: visible;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 10px 26px oklch(0.2 0.025 220 / 0.12);
+  color: var(--ink);
+}
+
+.canvasFlowNode.videoNode {
+  width: 360px;
+}
+
+.canvasFlowNode.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--focus), 0 12px 30px oklch(0.2 0.025 220 / 0.13);
+}
+
+.canvasFlowNode > header {
+  min-height: 38px;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 5px 4px 10px;
+  border-bottom: 1px solid var(--line);
+  border-radius: 7px 7px 0 0;
+  background: var(--panel-muted);
+  cursor: grab;
+}
+
+.canvasFlowNode > header:active {
+  cursor: grabbing;
+}
+
+.canvasFlowNode > header > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 760;
+  text-transform: uppercase;
+}
+
+.imageNode > header > span {
+  color: var(--accent-strong);
+}
+
+.videoNode > header > span {
+  color: var(--indigo);
+}
+
+.canvasFlowNode .canvasNodeIconButton {
+  width: 28px;
+  height: 28px;
+  border-color: transparent;
+  background: transparent;
+}
+
+.canvasNodeTitle {
+  width: calc(100% - 20px);
+  height: 35px;
+  margin: 7px 10px 6px;
+  padding-inline: 7px;
+  border-color: transparent;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 720;
+}
+
+.canvasNodeTitle:hover,
+.canvasNodeTitle:focus {
+  border-color: var(--line);
+  background: var(--panel-muted);
+}
+
+.canvasImagePreview {
+  width: calc(100% - 20px);
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  margin: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel-strong);
+  color: var(--muted);
+}
+
+.canvasImagePreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.imageNode > footer {
+  padding: 8px 10px 10px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.canvasHandle {
+  width: 13px;
+  height: 13px;
+  border: 2px solid var(--panel);
+  background: var(--accent);
+}
+
+.canvasHandle.source {
+  right: -7px;
+}
+
+.canvasHandle.target {
+  left: -7px;
+  background: var(--indigo);
+}
+
+.canvasReferenceStrip {
+  min-height: 39px;
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+  padding: 4px 10px 7px;
+}
+
+.canvasReferenceStrip > span {
+  align-self: center;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.canvasReferenceStrip button {
+  min-width: 84px;
+  max-width: 122px;
+  display: grid;
+  gap: 1px;
+  flex: 0 0 auto;
+  padding: 5px 7px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  text-align: left;
+  font-size: 10px;
+  font-weight: 760;
+}
+
+.canvasReferenceStrip button small {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 550;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.canvasPromptInput {
+  width: calc(100% - 20px);
+  min-height: 118px;
+  max-height: 240px;
+  resize: vertical;
+  margin: 0 10px;
+  padding: 9px;
+  border-color: var(--line);
+  background: oklch(1 0 0);
+  line-height: 1.55;
+  font-size: 11px;
+}
+
+.canvasVideoSettings {
+  display: grid;
+  gap: 8px;
+  padding: 9px 10px;
+}
+
+.canvasVideoSettings label {
+  gap: 4px;
+  font-size: 10px;
+}
+
+.canvasVideoSettings select {
+  width: 100%;
+  height: 32px;
+  min-width: 0;
+  font-size: 10px;
+}
+
+.canvasVideoSettings .videoModelSelectTrigger { min-height: 34px; padding: 6px 7px; font-size: 10px; }
+.canvasVideoSettings .videoModelSelectedName { font-size: 10px; }
+.canvasVideoSettings .videoModelPrice { gap: 5px; font-size: 9px; }
+.canvasVideoSettings .videoModelPrice strong { font-size: 10px; }
+.canvasVideoSettings .videoModelPrice em { display: none; }
+
+.canvasSettingsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.canvasAudioToggle {
+  grid-column: 1 / -1;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 7px !important;
+}
+
+.canvasAudioToggle input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+}
+
+.canvasTaskState {
+  min-height: 42px;
+  gap: 8px;
+  margin: 0 10px 8px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel-muted);
+}
+
+.canvasTaskState > span {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--panel);
+}
+
+.canvasTaskState > div {
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+}
+
+.canvasTaskState strong {
+  font-size: 10px;
+}
+
+.canvasTaskState small {
+  max-height: 34px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.canvasTaskState.completed {
+  border-color: var(--success);
+  background: oklch(0.94 0.04 150);
+}
+
+.canvasTaskState.failed {
+  border-color: var(--danger);
+  background: var(--coral-soft);
+}
+
+.canvasVideoResult {
+  margin: 0 10px 8px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: oklch(0.16 0.02 220);
+}
+
+.canvasVideoResult video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+
+.canvasVideoResult > div {
+  justify-content: flex-end;
+  gap: 5px;
+  padding: 5px;
+  background: var(--panel);
+}
+
+.canvasVideoResult button,
+.canvasVideoResult a {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--panel);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.canvasGenerateButton {
+  width: calc(100% - 20px);
+  min-height: 36px;
+  justify-content: center;
+  gap: 7px;
+  margin: 0 10px 10px;
+  border: 1px solid var(--accent-strong);
+  border-radius: 6px;
+  background: var(--accent-strong);
+  color: white;
+  font-size: 11px;
+  font-weight: 720;
+}
+
+.canvasGenerateButton:hover:not(:disabled) {
+  background: var(--accent);
+}
+
+.canvasEmptyState {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+  color: var(--muted);
+}
+
+.canvasEmptyState strong {
+  color: var(--ink);
+}
+
+.canvasBusyIndicator,
+.canvasNotice,
+.canvasError {
+  position: absolute;
+  z-index: 40;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--panel);
+  box-shadow: 0 10px 24px oklch(0.2 0.025 220 / 0.14);
+  font-size: 11px;
+  font-weight: 680;
+}
+
+.canvasBusyIndicator {
+  right: 14px;
+  top: 14px;
+  padding: 8px 11px;
+}
+
+.canvasNotice {
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  padding: 9px 12px;
+  border-color: var(--success);
+}
+
+.canvasError {
+  left: 50%;
+  bottom: 18px;
+  width: min(520px, calc(100% - 28px));
+  justify-content: space-between;
+  transform: translateX(-50%);
+  padding: 9px 9px 9px 12px;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.canvasError span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.canvasError span a {
+  display: inline-flex;
+  margin-left: 8px;
+  color: #fff;
+  font-weight: 750;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.canvasError button {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+
+@media (max-width: 780px) {
+  .canvasAppShell {
+    grid-template-columns: 76px minmax(0, 1fr);
+  }
+
+  .canvasTopbar {
+    grid-template-columns: auto minmax(120px, 1fr) auto;
+    gap: 8px;
+    padding-inline: 8px;
+  }
+
+  .canvasBrand strong,
+  .canvasBrand > span,
+  .canvasUserBadge {
+    display: none;
+  }
+
+  .canvasSidebarHeader {
+    justify-content: center;
+    padding-inline: 6px;
+  }
+
+  .canvasSidebarHeader > strong,
+  .canvasCreateForm input,
+  .canvasCreateForm button:last-child,
+  .canvasDocumentList > button > span:last-child {
+    display: none;
+  }
+
+  .canvasCreateForm {
+    justify-content: center;
+  }
+
+  .canvasDocumentList {
+    padding: 6px;
+  }
+
+  .canvasDocumentList > button {
+    min-height: 48px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding: 4px;
+  }
+
+  .canvasToolbar {
+    max-width: calc(100vw - 110px);
+  }
+}
+
+/* Shotlab-aligned canvas shell */
+.canvasAppShell {
+  --canvas-bg: #f8fafc;
+  --canvas-surface: #ffffff;
+  --canvas-surface-raised: #f1f4f9;
+  --canvas-surface-hover: #3f3f46;
+  --canvas-line: #3f3f46;
+  --canvas-line-soft: #f1f4f9;
+  --canvas-ink: #29364b;
+  --canvas-muted: #a1a1aa;
+  --canvas-dim: #71717a;
+  --canvas-primary: #e74b3b;
+  --canvas-primary-hover: #ea675a;
+  width: 100vw;
+  height: 100vh;
+  min-width: 320px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 56px minmax(0, 1fr);
+  overflow: hidden;
+  background: var(--canvas-bg);
+  color: var(--canvas-ink);
+  color-scheme: dark;
+}
+
+.canvasTopbar {
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(220px, 420px) minmax(180px, 1fr);
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--canvas-line-soft);
+  background: var(--canvas-surface);
+  z-index: 70;
+}
+
+.canvasBrand {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.canvasLogoButton,
+.canvasBackButton,
+.canvasNodeIconButton {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 8px;
+  background: var(--canvas-surface-raised);
+  color: var(--canvas-ink);
+  text-decoration: none;
+}
+
+.canvasLogoButton:hover,
+.canvasBackButton:hover,
+.canvasNodeIconButton:hover:not(:disabled) {
+  background: var(--canvas-surface-hover);
+}
+
+.canvasBrand > .canvasBrandName {
+  width: auto;
+  height: auto;
+  display: inline;
+  overflow: hidden;
+  border-radius: 0;
+  background: transparent;
+  color: var(--canvas-ink);
+  font-size: 13px;
+  font-weight: 760;
+  letter-spacing: -0.015em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.canvasBrand > .canvasBrandName em {
+  color: var(--canvas-muted);
+  font-style: normal;
+  font-weight: 580;
+}
+
+.canvasTitleCluster {
+  min-width: 0;
+  display: grid;
+  justify-items: center;
+  gap: 1px;
+}
+
+.canvasDocumentName {
+  width: min(100%, 420px);
+  height: 26px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 6px;
+  outline: 0;
+  background: transparent;
+  color: var(--canvas-ink);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.canvasDocumentName:hover,
+.canvasDocumentName:focus {
+  background: var(--canvas-surface-raised);
+}
+
+.canvasTitleCluster > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--canvas-dim);
+  font-size: 9px;
+  line-height: 1;
+}
+
+.canvasUserBadge {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  gap: 8px;
+  line-height: 1.2;
+}
+
+.canvasUserBadge > span {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--canvas-primary);
+  color: white;
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.canvasUserBadge strong {
+  max-width: 150px;
+  overflow: hidden;
+  color: var(--canvas-muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.canvasStage {
+  grid-column: 1;
+  grid-row: 2;
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--canvas-bg);
+}
+
+.canvasStage .react-flow {
+  background: var(--canvas-bg);
+}
+
+.canvasStage .react-flow__pane {
+  cursor: default;
+}
+
+.canvasStage .react-flow__pane.dragging {
+  cursor: grabbing;
+}
+
+.canvasStage .react-flow__edge-path {
+  stroke: #71717a;
+  stroke-width: 1.6;
+}
+
+.canvasStage .react-flow__edge:hover .react-flow__edge-path,
+.canvasStage .react-flow__edge.selected .react-flow__edge-path {
+  stroke: var(--canvas-primary);
+  stroke-width: 2;
+}
+
+.canvasStage .react-flow__edge-text {
+  fill: #536176;
+}
+
+.canvasStage .react-flow__edge-textbg {
+  fill: var(--canvas-surface-raised);
+  stroke: var(--canvas-line);
+}
+
+.canvasStage .react-flow__selection,
+.canvasStage .react-flow__nodesselection-rect {
+  border: 1px solid var(--canvas-primary);
+  background: rgba(231, 75, 59, 0.08);
+}
+
+.canvasToolRail {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  z-index: 60;
+  width: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid var(--canvas-line);
+  border-radius: 26px;
+  background: var(--canvas-surface);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.24);
+  transform: translateY(-50%);
+}
+
+.canvasToolRail button,
+.canvasToolRail a {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--canvas-muted);
+  text-decoration: none;
+  transition: background 140ms ease-out, color 140ms ease-out, transform 140ms ease-out;
+}
+
+.canvasToolRail button:hover:not(:disabled),
+.canvasToolRail a:hover,
+.canvasToolRail button.active {
+  background: var(--canvas-surface-hover);
+  color: var(--canvas-ink);
+}
+
+.canvasToolRail button:active:not(:disabled),
+.canvasToolRail a:active {
+  transform: scale(0.94);
+}
+
+.canvasToolRail button.primary {
+  background: var(--canvas-primary);
+  color: white;
+}
+
+.canvasToolRail button.primary:hover,
+.canvasToolRail button.primary.active {
+  background: var(--canvas-primary-hover);
+}
+
+.canvasRailDivider {
+  width: 24px;
+  height: 1px;
+  margin: 2px 0;
+  background: var(--canvas-line);
+}
+
+.canvasSidebar {
+  position: absolute;
+  left: 84px;
+  top: 16px;
+  bottom: 16px;
+  z-index: 58;
+  width: min(360px, calc(100vw - 116px));
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--canvas-line);
+  border-radius: 12px;
+  background: rgba(39, 39, 42, 0.94);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(24px);
+  animation: canvasPanelIn 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes canvasPanelIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.canvasSidebarHeader {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 10px 10px 16px;
+  border-bottom: 1px solid var(--canvas-line);
+}
+
+.canvasSidebarHeader strong {
+  color: var(--canvas-ink);
+  font-size: 13px;
+}
+
+.canvasSidebarHeader > div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.canvasSidebarHeader .canvasNodeIconButton {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  color: var(--canvas-muted);
+}
+
+.canvasCreateForm {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  border-bottom: 1px solid var(--canvas-line);
+  background: var(--canvas-surface);
+}
+
+.canvasCreateForm input,
+.canvasNodeSearch input {
+  min-width: 0;
+  height: 34px;
+  flex: 1 1 auto;
+  border: 1px solid var(--canvas-line);
+  border-radius: 8px;
+  outline: 0;
+  background: var(--canvas-bg);
+  color: var(--canvas-ink);
+}
+
+.canvasCreateForm input::placeholder,
+.canvasNodeSearch input::placeholder,
+.canvasPromptInput::placeholder {
+  color: #a1a1aa;
+}
+
+.canvasCreateForm input:focus,
+.canvasNodeSearch:focus-within {
+  border-color: var(--canvas-primary);
+}
+
+.canvasCreateForm button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 8px;
+  background: var(--canvas-surface-raised);
+  color: var(--canvas-ink);
+}
+
+.canvasDocumentList,
+.canvasManagedNodeList {
+  min-height: 0;
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.canvasDocumentList > button,
+.canvasManagedNodeList > button {
+  width: 100%;
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--canvas-ink);
+  text-align: left;
+}
+
+.canvasDocumentList > button:hover,
+.canvasDocumentList > button.active,
+.canvasManagedNodeList > button:hover {
+  background: var(--canvas-surface-hover);
+}
+
+.canvasDocumentList > button.active {
+  box-shadow: inset 0 0 0 1px #71717a;
+}
+
+.canvasDocumentThumb,
+.canvasManagedNodeList > button > span:first-child {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 7px;
+  background: var(--canvas-bg);
+  color: var(--canvas-muted);
+}
+
+.canvasDocumentThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.canvasDocumentList > button > span:last-child,
+.canvasManagedNodeList > button > span:last-child {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.canvasDocumentList strong,
+.canvasDocumentList small,
+.canvasManagedNodeList strong,
+.canvasManagedNodeList small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.canvasDocumentList strong,
+.canvasManagedNodeList strong {
+  color: var(--canvas-ink);
+  font-size: 12px;
+}
+
+.canvasDocumentList small,
+.canvasManagedNodeList small {
+  color: var(--canvas-muted);
+  font-size: 10px;
+}
+
+.canvasNodeSearch {
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 10px 10px 4px;
+  padding: 0 10px;
+  border: 1px solid var(--canvas-line);
+  border-radius: 8px;
+  background: var(--canvas-bg);
+  color: var(--canvas-muted);
+}
+
+.canvasNodeSearch input {
+  height: 32px;
+  padding: 0;
+  border: 0;
+}
+
+.canvasManagedNodeList > p {
+  padding: 48px 12px;
+  color: var(--canvas-muted);
+  text-align: center;
+  font-size: 12px;
+}
+
+.canvasShortcutList {
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.canvasShortcutList > p {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 4px 12px;
+  color: var(--canvas-muted);
+  font-size: 11px;
+}
+
+.canvasShortcutList dl {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+}
+
+.canvasShortcutList dl > div {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 6px 10px;
+  border-radius: 7px;
+}
+
+.canvasShortcutList dl > div:hover {
+  background: var(--canvas-surface-hover);
+}
+
+.canvasShortcutList dt {
+  color: var(--canvas-ink);
+  font-size: 12px;
+}
+
+.canvasShortcutList dd {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  color: var(--canvas-muted);
+}
+
+.canvasShortcutList kbd,
+.canvasAddMenu kbd,
+.canvasContextMenu kbd {
+  min-width: 23px;
+  height: 21px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0 5px;
+  border: 1px solid #52525b;
+  border-radius: 5px;
+  background: var(--canvas-surface);
+  color: #536176;
+  font: 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.canvasAddMenu {
+  position: absolute;
+  left: 84px;
+  top: 50%;
+  z-index: 62;
+  width: 292px;
+  overflow: hidden;
+  border: 1px solid var(--canvas-line);
+  border-radius: 12px;
+  background: var(--canvas-surface-raised);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transform: translateY(-50%);
+  animation: canvasAddIn 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes canvasAddIn {
+  from { opacity: 0; transform: translate(-6px, -50%) scale(0.98); }
+  to { opacity: 1; transform: translate(0, -50%) scale(1); }
+}
+
+.canvasAddMenu > header {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--canvas-line);
+}
+
+.canvasAddMenu > header strong {
+  font-size: 12px;
+}
+
+.canvasAddMenuGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  padding: 8px;
+}
+
+.canvasAddMenuGrid button {
+  min-height: 92px;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-content: center;
+  align-items: center;
+  gap: 3px 8px;
+  padding: 10px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--canvas-surface);
+  color: var(--canvas-ink);
+  text-align: left;
+}
+
+.canvasAddMenuGrid button:hover:not(:disabled) {
+  background: var(--canvas-surface-hover);
+}
+
+.canvasAddMenuGrid button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.canvasAddMenuGrid button > span {
+  grid-row: 1 / 3;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--canvas-surface-raised);
+  color: var(--canvas-primary);
+}
+
+.canvasAddMenuGrid strong {
+  align-self: end;
+  font-size: 11px;
+}
+
+.canvasAddMenuGrid small {
+  align-self: start;
+  overflow: hidden;
+  color: var(--canvas-muted);
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.canvasAddMenu > footer {
+  padding: 0 12px 10px;
+  color: var(--canvas-dim);
+  font-size: 9px;
+}
+
+.canvasContextMenu {
+  position: fixed;
+  z-index: 100;
+  width: 220px;
+  display: grid;
+  gap: 2px;
+  padding: 6px;
+  border: 1px solid var(--canvas-line);
+  border-radius: 10px;
+  background: rgba(39, 39, 42, 0.96);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+}
+
+.canvasContextMenu > strong {
+  padding: 7px 8px 5px;
+  color: var(--canvas-muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.canvasContextMenu > span {
+  height: 1px;
+  margin: 4px 2px;
+  background: var(--canvas-line);
+}
+
+.canvasContextMenu button {
+  min-height: 34px;
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 7px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--canvas-ink);
+  text-align: left;
+  font-size: 11px;
+}
+
+.canvasContextMenu button:hover {
+  background: var(--canvas-surface-hover);
+}
+
+.canvasViewportToolbar {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0 0 18px 18px !important;
+  padding: 2px 5px;
+  border: 1px solid var(--canvas-line);
+  border-radius: 18px;
+  background: var(--canvas-surface);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.24);
+  transition: transform 180ms ease-out;
+}
+
+.canvasViewportToolbar.withMinimap {
+  transform: translateY(-164px);
+}
+
+.canvasViewportToolbar button {
+  height: 28px;
+  min-width: 28px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--canvas-muted);
+  font-size: 10px;
+}
+
+.canvasViewportToolbar button:hover,
+.canvasViewportToolbar button.active {
+  background: var(--canvas-surface-hover);
+  color: var(--canvas-ink);
+}
+
+.canvasViewportToolbar .canvasZoomValue {
+  min-width: 45px;
+  color: #536176;
+  font-variant-numeric: tabular-nums;
+}
+
+.canvasToolbarDivider {
+  width: 1px;
+  height: 18px;
+  margin: 0 2px;
+  background: var(--canvas-line);
+}
+
+.canvasStage .react-flow__minimap {
+  left: 18px;
+  bottom: 58px;
+  width: 200px;
+  height: 150px;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid var(--canvas-line);
+  border-radius: 10px;
+  background: var(--canvas-surface);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.24);
+}
+
+.canvasSelectionBar {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px !important;
+  padding: 3px 4px 3px 12px;
+  border: 1px solid var(--canvas-line);
+  border-radius: 19px;
+  background: var(--canvas-surface);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.24);
+  color: var(--canvas-muted);
+  font-size: 10px;
+}
+
+.canvasSelectionBar button {
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 15px;
+  background: transparent;
+  color: #bb434d;
+  font-size: 10px;
+}
+
+.canvasSelectionBar button:hover:not(:disabled) {
+  background: rgba(231, 75, 59, 0.16);
+}
+
+.canvasFlowNode {
+  width: 320px;
+  overflow: visible;
+  border: 1px solid var(--canvas-line);
+  border-radius: 10px;
+  background: var(--canvas-surface-raised);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.28);
+  color: var(--canvas-ink);
+  transition: border-color 140ms ease-out, box-shadow 140ms ease-out;
+}
+
+.canvasFlowNode.videoNode {
+  width: 372px;
+}
+
+.canvasFlowNode.audioNode {
+  width: 360px;
+}
+
+.canvasFlowNode.imageGeneratorNode {
+  width: 392px;
+}
+
+.canvasFlowNode:hover {
+  border-color: #71717a;
+}
+
+.canvasFlowNode.selected {
+  border-color: var(--canvas-primary);
+  box-shadow: 0 0 0 2px rgba(231, 75, 59, 0.28);
+}
+
+.canvasFlowNode > header {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 6px 4px 12px;
+  border-bottom: 1px solid var(--canvas-line);
+  border-radius: 9px 9px 0 0;
+  background: var(--canvas-surface);
+  cursor: grab;
+}
+
+.canvasFlowNode > header:active {
+  cursor: grabbing;
+}
+
+.canvasFlowNode > header > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #536176;
+  font-size: 11px;
+  font-weight: 650;
+  text-transform: none;
+}
+
+.imageNode > header > span,
+.videoNode > header > span {
+  color: #536176;
+}
+
+.audioNode > header > span {
+  color: #7c61b5;
+}
+
+.canvasFlowNode .canvasNodeIconButton {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  color: var(--canvas-muted);
+}
+
+.canvasNodeTitle {
+  width: calc(100% - 20px);
+  height: 34px;
+  margin: 7px 10px 6px;
+  padding: 0 7px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  outline: 0;
+  background: transparent;
+  color: var(--canvas-ink);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.canvasNodeTitle:hover,
+.canvasNodeTitle:focus {
+  border-color: var(--canvas-line);
+  background: var(--canvas-surface);
+}
+
+.canvasImagePreview {
+  width: calc(100% - 20px);
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  margin: 0 10px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--canvas-bg);
+  color: var(--canvas-muted);
+}
+
+.canvasImagePreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.canvasGeneratedImagePreview {
+  position: relative;
+  min-height: 220px;
+  max-height: 360px;
+  border: 1px solid var(--canvas-line);
+  background:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.018) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.018) 25%, transparent 25%),
+    var(--canvas-bg);
+  background-size: 20px 20px;
+}
+
+.canvasGeneratedImagePreview img {
+  object-fit: contain;
+}
+
+.canvasImageEmptyPrompt {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  color: var(--canvas-dim);
+  font-size: 10px;
+}
+
+.canvasImageGenerating {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 8px;
+  background: rgba(9, 9, 11, 0.76);
+  backdrop-filter: blur(4px);
+  color: #465469;
+  font-size: 10px;
+}
+
+.canvasImageDownload {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  background: rgba(24, 24, 27, 0.84);
+  color: var(--canvas-ink);
+}
+
+.imageNode > footer {
+  padding: 8px 10px 10px;
+  color: var(--canvas-dim);
+  font-size: 9px;
+}
+
+.canvasHandle {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--canvas-surface-raised);
+  background: var(--canvas-primary);
+}
+
+.canvasHandle.source { right: -6px; }
+.canvasHandle.target { left: -6px; background: var(--canvas-primary); }
+
+.canvasReferenceStrip {
+  min-height: 38px;
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+  padding: 4px 10px 7px;
+}
+
+.canvasReferenceStrip > span {
+  align-self: center;
+  color: var(--canvas-muted);
+  font-size: 10px;
+}
+
+.canvasReferenceStrip button {
+  min-width: 148px;
+  max-width: 178px;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: center;
+  gap: 7px;
+  flex: 0 0 auto;
+  padding: 4px 7px 4px 4px;
+  border: 1px solid #52525b;
+  border-radius: 6px;
+  background: var(--canvas-surface);
+  color: #bb434d;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.canvasReferenceStrip button:hover {
+  border-color: var(--canvas-primary);
+}
+
+.canvasReferenceThumbnail {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 5px;
+  background: var(--canvas-bg);
+  color: var(--canvas-muted);
+}
+
+.canvasReferenceThumbnail img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.canvasReferenceCopy {
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+}
+
+.canvasReferenceCopy strong {
+  overflow: hidden;
+  color: #bb434d;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.canvasReferenceStrip button small {
+  overflow: hidden;
+  color: var(--canvas-muted);
+  font-size: 9px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.canvasReferenceHint {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.canvasMentionPopover {
+  position: fixed;
+  z-index: var(--z-menu);
+  max-height: min(370px, calc(100vh - 24px));
+  overflow: hidden;
+  border: 1px solid #3f3f46;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #29364b;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.36);
+}
+
+.canvasMentionHeader,
+.canvasMentionFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 10px;
+  background: #f8fafc;
+}
+
+.canvasMentionHeader {
+  border-bottom: 1px solid #3f3f46;
+}
+
+.canvasMentionHeader > span:first-child {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.canvasMentionHeader strong {
+  font-size: 12px;
+}
+
+.canvasMentionHeader small,
+.canvasMentionHeader > span:last-child,
+.canvasMentionFooter {
+  color: #a1a1aa;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.canvasMentionHeader > span:last-child {
+  flex: 0 0 auto;
+}
+
+.canvasMentionOptions {
+  max-height: 270px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 5px;
+}
+
+.canvasMentionOptions > button {
+  width: 100%;
+  min-height: 54px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  padding: 6px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: #29364b;
+  text-align: left;
+}
+
+.canvasMentionOptions > button:hover,
+.canvasMentionOptions > button.active {
+  border-color: #ef4444;
+  background: #fff1f2;
+}
+
+.canvasMentionOptions > button:focus-visible {
+  outline: 2px solid #f87171;
+  outline-offset: -2px;
+}
+
+.canvasMentionThumbnail {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #f8fafc;
+  color: #a1a1aa;
+}
+
+.canvasMentionThumbnail img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.canvasMentionCopy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.canvasMentionCopy strong,
+.canvasMentionCopy small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.canvasMentionCopy strong {
+  color: #bb434d;
+  font-size: 12px;
+}
+
+.canvasMentionCopy small {
+  color: #536176;
+  font-size: 10px;
+}
+
+.canvasMentionKind {
+  min-height: 23px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0 7px;
+  background: #f1f4f9;
+  color: #536176;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.canvasMentionKind.image { background: #fff0f1; color: #b9454e; }
+.canvasMentionKind.video { background: #f2edfc; color: #7253ac; }
+.canvasMentionKind.audio { background: #edf8f4; color: #28806a; }
+
+.canvasMentionEmpty {
+  min-height: 76px;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  color: #a1a1aa;
+  font-size: 11px;
+  text-align: center;
+}
+
+.canvasMentionFooter {
+  justify-content: flex-start;
+  border-top: 1px solid #3f3f46;
+}
+
+.canvasImagePromptComposer {
+  position: relative;
+  margin: 0 10px 8px;
+  border: 1px solid var(--canvas-line);
+  border-radius: 7px;
+  background: var(--canvas-surface);
+}
+
+.canvasImagePromptComposer:focus-within {
+  border-color: #71717a;
+}
+
+.canvasImagePromptComposer textarea {
+  width: 100%;
+  min-height: 112px;
+  max-height: 240px;
+  resize: vertical;
+  padding: 10px 10px 38px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--canvas-ink);
+  line-height: 1.55;
+  font-size: 11px;
+}
+
+.canvasPromptPolish {
+  position: absolute;
+  right: 7px;
+  bottom: 6px;
+  min-height: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 5px;
+  background: var(--canvas-surface-raised);
+  color: #28806a;
+  font-size: 9px;
+}
+
+.canvasPromptPolish:disabled {
+  opacity: 0.42;
+}
+
+.canvasImageSettings {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  padding: 0 10px 9px;
+}
+
+.canvasImageSettings .canvasWideSetting {
+  grid-column: 1 / -1;
+}
+
+.canvasImageSettings label {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+  color: var(--canvas-muted);
+  font-size: 9px;
+}
+
+.canvasImageSettings select {
+  width: 100%;
+  height: 32px;
+  min-width: 0;
+  padding: 0 7px;
+  border: 1px solid var(--canvas-line);
+  border-radius: 6px;
+  background: var(--canvas-surface);
+  color: var(--canvas-ink);
+  font-size: 10px;
+  text-overflow: ellipsis;
+}
+
+.canvasPriceDisclosure {
+  grid-column: 1 / -1;
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: var(--canvas-surface-raised);
+  color: var(--canvas-muted);
+  font-size: 9px;
+}
+
+.canvasPriceDisclosure > span,
+.canvasAudioPrice {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.canvasPriceDisclosure strong,
+.canvasAudioPrice em {
+  color: var(--canvas-ink);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 750;
+}
+
+.canvasPriceDisclosure s {
+  color: var(--canvas-muted);
+  text-decoration-thickness: 1.5px;
+}
+
+.canvasPriceDisclosure b,
+.canvasAudioPrice b {
+  padding: 2px 5px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.16);
+  color: #28806a;
+  font-size: 8px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.canvasTaskError {
+  margin: 0 10px 8px;
+  padding: 7px 8px;
+  border-radius: 6px;
+  background: rgba(239, 68, 68, 0.13);
+  color: #b9454e;
+  line-height: 1.45;
+  font-size: 9px;
+}
+
+.canvasPromptInput {
+  width: calc(100% - 20px);
+  min-height: 112px;
+  max-height: 240px;
+  resize: vertical;
+  margin: 0 10px;
+  padding: 10px;
+  border: 1px solid var(--canvas-line);
+  border-radius: 7px;
+  outline: 0;
+  background: var(--canvas-surface);
+  color: var(--canvas-ink);
+  line-height: 1.55;
+  font-size: 11px;
+}
+
+.canvasPromptInput:focus {
+  border-color: #71717a;
+}
+
+.canvasVideoSettings {
+  display: grid;
+  gap: 8px;
+  padding: 9px 10px;
+}
+
+.canvasVideoSettings label {
+  display: grid;
+  gap: 4px;
+  color: var(--canvas-muted);
+  font-size: 9px;
+}
+
+.canvasVideoSettings select {
+  width: 100%;
+  height: 32px;
+  min-width: 0;
+  border: 1px solid var(--canvas-line);
+  border-radius: 6px;
+  background: var(--canvas-surface);
+  color: var(--canvas-ink);
+  font-size: 10px;
+}
+
+.canvasSettingsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.canvasAudioToggle {
+  grid-column: 1 / -1;
+  min-height: 28px;
+  display: flex !important;
+  align-items: center;
+  gap: 7px !important;
+}
+
+.canvasAudioToggle input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: var(--canvas-primary);
+}
+
+.canvasTaskState {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 10px 8px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--canvas-surface);
+}
+
+.canvasTaskState > span {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--canvas-surface-raised);
+}
+
+.canvasTaskState > div {
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+}
+
+.canvasTaskState strong { color: var(--canvas-ink); font-size: 10px; }
+.canvasTaskState small { color: var(--canvas-muted); font-size: 9px; }
+.canvasTaskState.completed { background: rgba(34, 197, 94, 0.12); }
+.canvasTaskState.failed { background: rgba(239, 68, 68, 0.13); }
+
+.canvasVideoResult {
+  margin: 0 10px 8px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 7px;
+  background: #000;
+}
+
+.canvasVideoResult video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+
+.canvasVideoResult > div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  padding: 5px;
+  background: var(--canvas-surface);
+}
+
+.canvasVideoResult button,
+.canvasVideoResult a {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 5px;
+  background: var(--canvas-surface-raised);
+  color: var(--canvas-ink);
+  text-decoration: none;
+  font-size: 10px;
+}
+
+.canvasAudioPrompt {
+  min-height: 118px;
+  margin-bottom: 8px;
+}
+
+.canvasAudioModel {
+  min-height: 42px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+  margin: 0 10px 8px;
+  padding: 7px 9px;
+  border: 1px solid var(--canvas-line);
+  border-radius: 7px;
+  background: var(--canvas-surface);
+  color: var(--canvas-muted);
+  font-size: 9px;
+}
+
+.canvasAudioModel strong {
+  color: var(--canvas-ink);
+  font-size: 10px;
+}
+
+.canvasAudioPrice {
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  text-align: right;
+}
+
+.canvasAudioPrice small {
+  width: 100%;
+  color: var(--canvas-muted);
+  text-decoration: line-through;
+}
+
+.canvasAudioUploadHint {
+  margin: 0 10px 8px;
+  color: var(--canvas-muted);
+  line-height: 1.5;
+  font-size: 10px;
+}
+
+.canvasAudioResult {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 7px;
+  margin: 0 10px 9px;
+  padding: 8px;
+  border: 1px solid rgba(139, 92, 246, 0.34);
+  border-radius: 8px;
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.canvasAudioResult audio {
+  width: 100%;
+  min-width: 0;
+  height: 34px;
+}
+
+.canvasAudioResult a {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: var(--canvas-surface-raised);
+  color: var(--canvas-ink);
+  text-decoration: none;
+  font-size: 9px;
+}
+
+.canvasAudioEmpty {
+  min-height: 72px;
+  display: grid;
+  place-items: center;
+  gap: 5px;
+  margin: 0 10px 9px;
+  border: 1px dashed rgba(139, 92, 246, 0.38);
+  border-radius: 8px;
+  color: var(--canvas-dim);
+  font-size: 9px;
+}
+
+.canvasGenerateButton {
+  width: calc(100% - 20px);
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin: 0 10px 10px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--canvas-primary);
+  color: white;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.canvasGenerateButton:hover:not(:disabled) {
+  background: var(--canvas-primary-hover);
+}
+
+.canvasGenerateButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.46;
+}
+
+.canvasTextControl {
+  user-select: text;
+  -webkit-user-select: text;
+  caret-color: var(--canvas-primary);
+}
+
+.canvasNodeTitle {
+  border-color: var(--canvas-line);
+  background: var(--canvas-surface);
+  cursor: text;
+}
+
+.canvasNodeTitle:hover {
+  border-color: #71717a;
+  background: var(--canvas-surface);
+}
+
+.canvasNodeTitle:focus,
+.canvasNodeTitle:focus-visible,
+.canvasPromptInput:focus,
+.canvasPromptInput:focus-visible,
+.canvasImagePromptComposer:focus-within,
+.canvasImageSettings select:focus,
+.canvasImageSettings select:focus-visible,
+.canvasVideoSettings select:focus,
+.canvasVideoSettings select:focus-visible,
+.canvasDocumentName:focus,
+.canvasDocumentName:focus-visible,
+.canvasCreateForm input:focus,
+.canvasCreateForm input:focus-visible,
+.canvasNodeSearch:focus-within {
+  border-color: var(--canvas-primary);
+  box-shadow: 0 0 0 2px rgba(231, 75, 59, 0.24);
+}
+
+.canvasDocumentName:focus,
+.canvasDocumentName:focus-visible {
+  background: var(--canvas-surface-raised);
+}
+
+.canvasImageSettings select:disabled,
+.canvasVideoSettings select:disabled,
+.canvasFlowNode input:disabled,
+.canvasFlowNode textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.canvasFlowNode input::placeholder,
+.canvasFlowNode textarea::placeholder,
+.canvasCreateForm input::placeholder,
+.canvasNodeSearch input::placeholder {
+  color: #a1a1aa;
+  opacity: 1;
+}
+
+.canvasFlowNode input::selection,
+.canvasFlowNode textarea::selection,
+.canvasDocumentName::selection,
+.canvasCreateForm input::selection,
+.canvasNodeSearch input::selection {
+  background: rgba(231, 75, 59, 0.34);
+  color: #fff;
+}
+
+.canvasEmptyState {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+  color: var(--canvas-muted);
+}
+
+.canvasEmptyState strong { color: var(--canvas-ink); }
+
+.canvasEmptyState button {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 17px;
+  background: var(--canvas-primary);
+  color: white;
+  font-size: 11px;
+}
+
+.canvasBusyIndicator,
+.canvasNotice,
+.canvasError {
+  position: absolute;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--canvas-line);
+  border-radius: 9px;
+  background: var(--canvas-surface-raised);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.26);
+  color: var(--canvas-ink);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.canvasBusyIndicator {
+  right: 16px;
+  top: 16px;
+  padding: 8px 11px;
+}
+
+.canvasNotice {
+  left: 50%;
+  bottom: 18px;
+  padding: 9px 12px;
+  transform: translateX(-50%);
+}
+
+.canvasError {
+  left: 50%;
+  bottom: 18px;
+  width: min(520px, calc(100% - 28px));
+  justify-content: space-between;
+  padding: 9px 9px 9px 12px;
+  color: #bb434d;
+  transform: translateX(-50%);
+}
+
+.canvasError span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.canvasError button {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.canvasToolRail button:focus-visible,
+.canvasToolRail a:focus-visible,
+.canvasViewportToolbar button:focus-visible,
+.canvasContextMenu button:focus-visible,
+.canvasAddMenuGrid button:focus-visible,
+.canvasDocumentList button:focus-visible,
+.canvasManagedNodeList button:focus-visible,
+.canvasGenerateButton:focus-visible {
+  outline: 2px solid var(--canvas-primary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 780px) {
+  .canvasTopbar {
+    grid-template-columns: auto minmax(120px, 1fr) auto;
+    gap: 8px;
+    padding-inline: 10px;
+  }
+
+  .canvasBrandName,
+  .canvasUserBadge strong,
+  .canvasTitleCluster > span {
+    display: none;
+  }
+
+  .canvasToolRail {
+    left: 10px;
+    width: 46px;
+    padding: 6px 5px;
+  }
+
+  .canvasSidebar,
+  .canvasAddMenu {
+    left: 64px;
+    width: min(320px, calc(100vw - 74px));
+  }
+
+  .canvasViewportToolbar {
+    margin-left: 8px !important;
+  }
+
+  .canvasStage .react-flow__minimap {
+    left: 8px;
+    width: 160px;
+    height: 112px;
+  }
+
+  .canvasViewportToolbar.withMinimap {
+    transform: translateY(-126px);
+  }
+
+  .canvasFlowNode.videoNode {
+    width: 340px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvasSidebar,
+  .canvasAddMenu {
+    animation: none;
+  }
+
+  .canvasToolRail button,
+  .canvasToolRail a,
+  .canvasViewportToolbar,
+  .canvasFlowNode {
+    transition: none;
+  }
+}

@@ -1,0 +1,1 @@
+require('esbuild').buildSync({entryPoints:[__dirname+'/src/main.tsx'],bundle:true,outfile:__dirname+'/bundle.js',jsx:'automatic',define:{'process.env.NODE_ENV':'"production"'},minify:true,loader:{'.tsx':'tsx','.ts':'ts'}});

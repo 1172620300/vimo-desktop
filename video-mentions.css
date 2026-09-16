@@ -1,0 +1,4 @@
+.vs-reference-image{cursor:pointer;outline-offset:3px}
+.vs-reference-image:hover,.vs-reference-image:focus-visible{outline:2px solid #0052df}
+.vs-upload .vs-mention{display:block;margin-top:8px;margin-bottom:5px;padding:6px 9px;border:1px solid #d7e4ff;border-radius:7px;background:#edf3ff;color:#0052d9;font-size:12px}
+.vs-upload .vs-mention:hover{background:#dae8ff}

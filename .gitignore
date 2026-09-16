@@ -1,0 +1,6 @@
+node_modules/
+*.log
+canvas-app/store-test-build.cjs
+
+dist/
+.env*

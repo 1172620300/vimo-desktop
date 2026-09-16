@@ -1,0 +1,3 @@
+const source=require('./release.config.json');
+module.exports={appId:'com.vimo.desktop',productName:'Vimo',directories:{output:'dist'},asar:true,files:['workflows/*.json','*.cjs','*.js','*.css','index.html','package.json','canvas-app/index.html','canvas-app/bundle.js','canvas-app/bundle.css','canvas-app/theme.css','canvas-app/source.css','!*.test.cjs','!preview.cjs'],win:{target:[{target:'nsis',arch:['x64']}]},artifactName:'Vimo-Setup-${version}.${ext}',nsis:{oneClick:false,perMachine:false,allowToChangeInstallationDirectory:true,createDesktopShortcut:true,createStartMenuShortcut:true,shortcutName:'Vimo Desktop',deleteAppDataOnUninstall:false,runAfterFinish:true},publish:[{provider:'github',owner:source.owner,repo:source.repo,releaseType:'release'}]};
+

@@ -1,0 +1,22 @@
+/* Login owns its control sizing; workspace form rules must not leak into it. */
+.account-overlay{position:fixed;inset:0;z-index:9999;overflow:auto;padding:32px 20px;background:#f5f7fb;display:grid;place-items:center;color:#1f2937;font:14px "Segoe UI","Microsoft YaHei",sans-serif;line-height:1.5}
+.account-overlay *{box-sizing:border-box}
+.account-panel{width:400px;max-width:100%;padding:36px;background:#fff;border:1px solid #e7ebf2;border-radius:20px;box-shadow:0 8px 40px #263b6b0c}
+.account-identity{display:flex;gap:12px;align-items:center;margin-bottom:28px}
+.account-mark{width:42px;height:42px;display:grid;place-items:center;flex:none;border-radius:12px;background:#0052df;color:white;font-size:25px;font-weight:700}
+.account-panel h1{font-size:23px;font-weight:700;letter-spacing:-.5px;line-height:1.25;margin:0}
+.account-subtitle{margin:5px 0 0;color:#8a96a8;font-size:12px}
+.account-panel form{display:grid;gap:18px;margin:0}
+.account-panel label{display:grid;gap:8px;color:#536079;font-size:13px;font-weight:500}
+.account-panel input:not([type=checkbox]){appearance:none;display:block;width:100%;height:46px;margin:0;padding:11px 13px;border:1px solid #dfe5ee;border-radius:9px;background:#fff;color:#1f2937;font:14px "Segoe UI","Microsoft YaHei",sans-serif;line-height:22px}
+.account-panel input::placeholder{color:#a0a9b8}
+.account-panel input:focus-visible,.account-panel button:focus-visible{outline:3px solid #a8c5ff;outline-offset:2px}
+.account-panel label.account-remember{display:flex;align-items:center;gap:8px;font-weight:400;color:#7e899c;font-size:12px;cursor:pointer}
+.account-panel input[type=checkbox]{appearance:auto;flex:0 0 16px;width:16px;height:16px;min-height:0;margin:0;padding:0;accent-color:#0052df;cursor:pointer}
+.account-panel button{width:100%;height:46px;margin:0;padding:11px 16px;background:#0052df;color:white;border:0;border-radius:9px;font:500 14px "Segoe UI","Microsoft YaHei",sans-serif;cursor:pointer;transition:background .15s}
+.account-panel button:hover:not(:disabled){background:#003fb1}
+.account-panel button:disabled{opacity:.6;cursor:wait}
+.account-message{margin:0;color:#b33434;min-height:20px;line-height:1.6;font-size:12px;overflow-wrap:anywhere}
+.account-note{margin:0;padding-top:18px;border-top:1px solid #eef1f5;text-align:center;color:#99a3b2;font-size:12px}
+.account-bar{position:fixed;right:22px;bottom:10px;z-index:90;background:white;padding:6px 12px;border-radius:8px;font-size:12px}.account-bar button{margin-left:10px}
+@media(max-height:560px){.account-overlay{place-items:start center;padding:20px}.account-panel{padding:24px}.account-identity{margin-bottom:20px}}

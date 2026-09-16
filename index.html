@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'self' data:; frame-src 'self'"><title>Vimo Desktop</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="canvas.css"><link rel="stylesheet" href="rounded.css"><link rel="stylesheet" href="video-settings.css"><link rel="stylesheet" href="updater.css"></head>
+<body>
+<section id="login" class="login-page">
+  <div class="login-card"><div class="identity"><div class="brandmark">V</div><div><h1>Vimo <span>Desktop</span></h1><p>让每一个故事，都有自己的画面</p></div></div>
+  <form id="login-form" autocomplete="off"><label class="sr-only" for="account">账号</label><input id="account" placeholder="请输入账号" autocomplete="off"><label class="sr-only" for="password">密码</label><input id="password" type="password" placeholder="请输入密码" autocomplete="off"><button class="primary login-button" type="submit">登 录</button></form>
+  <p class="login-note">使用服务器创作端账号登录</p></div>
+  <footer>Vimo Desktop <span> / </span> <span data-app-version>加载中</span></footer>
+</section>
+<section id="workspace" hidden>
+  <aside><div class="brandmark small" title="Vimo Desktop">V</div><nav><button class="nav-item selected" data-page="canvas" title="画布" aria-label="画布">▧</button></nav><div class="bottom-nav"><button class="nav-item" data-page="settings" title="设置" aria-label="设置">⚙</button></div></aside>
+  <main>
+  <div class="content"><section id="canvas" class="page"><iframe id="live-canvas" src="about:blank" title="创作画布"></iframe></section>
+  <section id="settings" class="page" hidden><div class="page-heading"><div><h2>设置</h2><p>工作台的外观与账号信息。</p></div></div><div class="settings-card"><h3>基本信息</h3><div class="setting-row"><span>应用名称</span><b>Vimo Desktop</b></div><div class="setting-row"><span>版本</span><b><span data-app-version>加载中</span></b></div><div class="setting-row"><span>外观</span><b>浅色</b></div><div class="setting-row"><span>账号</span><b>当前登录账号见右下角</b></div><div class="setting-row logout-row"><span>登录状态</span><button id="logout" class="logout-button" type="button">退出登录</button></div></div></section>
+  </div><div class="workspace-footer">Vimo Desktop · 创作空间</div></main>
+</section><script src="video-studio.js"></script><script src="app.js"></script><script src="icons.js"></script><script src="account-ui.js"></script><script src="video-settings.js"></script><script src="updater-ui.js"></script></body></html>
+
+
+
+
+
+
+

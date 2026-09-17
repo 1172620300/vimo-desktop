@@ -1,6 +1,6 @@
 {
   "name": "scene-studio-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "main": "desktop.cjs",
   "scripts": {
@@ -14,7 +14,8 @@
   "devDependencies": {
     "electron": "44.4.0",
     "electron-builder": "26.15.3",
-    "fake-indexeddb": "^6.2.5"
+    "fake-indexeddb": "^6.2.5",
+    "js-yaml": "4.3.2"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.6",

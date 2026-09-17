@@ -5,7 +5,7 @@ function evaluatePolicy(current,policy={}) {
  const minimum=policy.minimum_client_version||policy.minimum_version;
  return {minimumClientVersion:semver.valid(minimum)?minimum:null,unsupported:!!(semver.valid(current)&&semver.valid(minimum)&&semver.lt(current,minimum)),forceUpdate:policy.force_update===true,latestVersion:semver.valid(policy.latest_version)?policy.latest_version:null};
 }
-function register({app,ipcMain,win,mainUrl},injected) {
+function register({app,ipcMain,win,mainUrl,verifyDownload=require('./update-integrity.cjs').verifyDownload},injected) {
  const updater=injected||require('electron-updater').autoUpdater;
  const enabled=app.isPackaged&&process.platform==='win32';
  let state={status:enabled?'idle':'disabled',currentVersion:app.getVersion(),enabled,progress:null},busy=false;
@@ -18,7 +18,7 @@ function register({app,ipcMain,win,mainUrl},injected) {
  function fail(){log('Update operation failed');emit({status:'error',message:'暂时无法检查或下载更新，请检查网络连接后重试。'});}
  updater.on('error',fail);
  updater.on('checking-for-update',()=>{log('Checking for update...');emit({status:'checking',message:''});});
- updater.on('update-not-available',()=>emit({status:'current',message:'当前已是最新版本。'}));
+ updater.on('update-not-available',info=>emit({status:'current',latestVersion:semver.valid(info?.version)||app.getVersion(),notes:'',message:'当前已是最新版本。'}));
  updater.on('update-available',info=>{
   log(`Latest version: ${semver.valid(info.version)||'invalid'}`);log('Update available');
   const notes=Array.isArray(info.releaseNotes)?info.releaseNotes.map(n=>n.note||'').join('\n'):String(info.releaseNotes||'暂无更新说明');
@@ -26,11 +26,11 @@ function register({app,ipcMain,win,mainUrl},injected) {
  });
  let lastPercent=-1,downloadToken;
  updater.on('download-progress',p=>{const percent=Math.floor(p.percent);if(percent!==lastPercent){lastPercent=percent;log(`Download progress: ${percent}%`);}emit({status:'downloading',progress:{percent:p.percent,transferred:p.transferred,total:p.total,bytesPerSecond:p.bytesPerSecond}});});
- updater.on('update-downloaded',()=>{log('Update downloaded');emit({status:'downloaded',message:''});});
+ updater.on('update-downloaded',()=>{log('Download complete; verifying SHA256');emit({status:'verifying',message:'正在验证安装包…',progress:null});});
  updater.on('update-cancelled',()=>emit({status:'available',progress:null,message:'已取消下载，可以稍后重试。'}));
  async function check(){if(!enabled||busy||['downloaded','downloading'].includes(state.status))return state;busy=true;try{await updater.checkForUpdates();}catch{fail();}finally{busy=false;}return state;}
- async function download(){if(!enabled||busy||!state.latestVersion||!['available','error'].includes(state.status))return state;busy=true;lastPercent=-1;emit({status:'downloading',message:'',progress:null});log('Downloading update');try{downloadToken=new (require('builder-util-runtime').CancellationToken)();await updater.downloadUpdate(downloadToken);}catch(e){if(downloadToken?.cancelled)emit({status:'available',message:'已取消下载，可以稍后重试。'});else fail();}finally{busy=false;}return state;}
- const actions={state:()=>state,check,download,cancel:()=>{downloadToken?.cancel();return state;},install:()=>{if(enabled&&state.status==='downloaded'){log('Installing update');setImmediate(()=>updater.quitAndInstall(false,true));}return state;}};
+ async function download(){if(!enabled||busy||!state.latestVersion||!['available','error'].includes(state.status))return state;busy=true;lastPercent=-1;emit({status:'downloading',message:'',progress:null});log('Downloading update');try{downloadToken=new (require('builder-util-runtime').CancellationToken)();const files=await updater.downloadUpdate(downloadToken);await verifyDownload(files,state.latestVersion);if(downloadToken.cancelled)throw Error('Cancelled');emit({status:'downloaded',message:'SHA256 校验通过，可以重启安装。',progress:null});}catch(e){if(downloadToken?.cancelled)emit({status:'available',message:'已取消下载，可以稍后重试。'});else fail();}finally{busy=false;}return state;}
+ const actions={details:()=>{const source=require('./release.config.json');return require('electron').shell.openExternal('https://github.com/'+source.owner+'/'+source.repo+'/releases'+(semver.valid(state.latestVersion)?'/tag/v'+state.latestVersion:''))},state:()=>state,check,download,cancel:()=>{downloadToken?.cancel();return state;},install:()=>{if(enabled&&state.status==='downloaded'){log('Installing update');setImmediate(()=>updater.quitAndInstall(false,true));}return state;}};
  for(const [action,handler]of Object.entries(actions))ipcMain.handle('updater:'+action,event=>{if(event.sender!==win.webContents||event.senderFrame!==event.sender.mainFrame||event.senderFrame?.url!==mainUrl)throw Error('来源无效');return handler();});
  log(`Current version: ${app.getVersion()}`);
  let timer;win.webContents.once('did-finish-load',()=>{if(enabled)timer=setTimeout(check,5000);});win.on('closed',()=>clearTimeout(timer));

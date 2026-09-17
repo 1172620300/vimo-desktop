@@ -1,6 +1,7 @@
 node_modules/
 *.log
 canvas-app/store-test-build.cjs
+canvas-app/generation-test-build.cjs
 
 dist/
 .env*
